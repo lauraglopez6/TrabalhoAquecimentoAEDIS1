@@ -5,9 +5,11 @@
 //qtdPontos = n
 //tamanhoPop = m
 //geracoes = G
+//void lerDados(const char *nome, int *qtdPontos, int *tamanhoPop, int *geracoes, float **valorX, float **valorY){
 
-
-void lerDados(const char *nome, int *qtdPontos, int *tamanhoPop, int *geracoes, float **valorX, float **valorY){
+Dados lerDados(const char *nome){
+    
+    Dados d;
 
 FILE *arquivo = fopen(nome, "r");
 
@@ -16,20 +18,22 @@ if(arquivo == NULL){
     exit(1);
 }
 
-fscanf(arquivo, "%d", qtdPontos);
-fscanf(arquivo, "%d", tamanhoPop);
-fscanf(arquivo, "%d", geracoes);
+fscanf(arquivo, "%d", &d.qtdPontos);
+fscanf(arquivo, "%d", &d.tamanhoPop);
+fscanf(arquivo, "%d", &d.geracoes);
 
-printf("DEBUG: %d %d %d\n", *qtdPontos, *tamanhoPop, *geracoes);
-//criando espaco pra gurdar os valores
-*valorX = (float*) malloc ((*qtdPontos)* sizeof(float));
-*valorY = (float*) malloc ((*qtdPontos)* sizeof(float));
+//printf("DEBUG: %d %d %d\n", *qtdPontos, *tamanhoPop, *geracoes);
+//espaco pra gurdar os valores
+d.valorX = (float*) malloc (d.qtdPontos * sizeof(float));
+d.valorY = (float*) malloc (d.qtdPontos * sizeof(float));
 
-for(int i=0; i < *qtdPontos; i++){
+for(int i=0; i < d.qtdPontos; i++){
 
-    fscanf(arquivo, "%f", &(*valorX)[i]);
-    fscanf(arquivo, "%f", &(*valorY)[i]);
+    fscanf(arquivo, "%f", &d.valorX[i]);
+    fscanf(arquivo, "%f", &d.valorY[i]);
 }
 fclose(arquivo);
+
+return d;
 
 }

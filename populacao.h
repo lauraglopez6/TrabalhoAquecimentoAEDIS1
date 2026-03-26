@@ -2,11 +2,17 @@
 #define POPULACAO_H
 
 //tamanhoPop = m 
-float** gerarPopulacao(int tamanhoPop);
 
-void preencherPopulacao(float **populacao, int tamanhoPop, float valorMin, float valorMax);
-//randon, gera a populacao
+typedef struct{
+    float a;
+    float b;
 
-void liberarPopulacao(float **populacao, int tamanhoPop);
+}Individuo;
+
+Individuo* gerarPopulacao(int tamanhoPop);
+
+void preencherPopulacao(Individuo *populacao, int tamanhoPop, float valorMin, float valorMax);
+
+void liberarPopulacao(Individuo *populacao);
 
 #endif

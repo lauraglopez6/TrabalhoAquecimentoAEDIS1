@@ -8,38 +8,33 @@ int main(){
     
     srand(42); 
 
-    int qtdPontos;
-    int tamanhoPop;
-    int geracoes;
-    float *valorX;
-    float *valorY;
-
-
     printf("=== TESTE ===\n");
-    lerDados("input.dat", &qtdPontos,&tamanhoPop,&geracoes,&valorX,&valorY);
+    
+    Dados d = lerDados("input.dat");
 
-    float **populacao = gerarPopulacao( tamanhoPop);
+    Individuo *populacao = gerarPopulacao( d.tamanhoPop);
 
-    preencherPopulacao(populacao, tamanhoPop, -10, 10);
+    preencherPopulacao(populacao, d.tamanhoPop, -10, 10);
 
-    for(int i=0; i<tamanhoPop; i++){
+    for(int i = 0; i < d.tamanhoPop; i++){
         printf("Individuo %d -> a = %.2f | b = %.2f\n",
         i,
-         populacao[i][0], 
-         populacao[i][1]);
+         populacao[i].a, 
+         populacao[i].b);
     }
 
     //TESTE
-    printf("pontos: %d\n", qtdPontos);
-    printf("populacao: %d\n", tamanhoPop);
-    printf("geracoes: %d\n", geracoes);
-    for(int i=0; i<qtdPontos;i++){
-        printf("X = %.2f | Y = %2f\n", valorX[i], valorY[i]);
+    printf("numero de pontos: %d\n", d.qtdPontos);
+    printf("populacao: %d\n", d.tamanhoPop);
+    printf("geracoes: %d\n", d.geracoes);
+
+    for(int i = 0; i < d.qtdPontos; i++){
+        printf("X = %.2f | Y = %2f\n", d.valorX[i], d.valorY[i]);
     }
 
-    liberarPopulacao(populacao, tamanhoPop);
-    free(valorX);
-    free(valorY);
+    liberarPopulacao(populacao);
+    free(d.valorX);
+    free(d.valorY);
 
     return 0;
 }
