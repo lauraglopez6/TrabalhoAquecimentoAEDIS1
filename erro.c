@@ -15,3 +15,11 @@ float calcularErro(Individuo ind, int qtdPontos, float *x, float *y){
     }
     return erroTotal / qtdPontos;
 }
+
+float calcularFitness(Individuo ind, int qtdPontos, float *x, float *y){
+
+    float erro = calcularErro(ind, qtdPontos, x, y);
+    return 1.0 / (1.0 + erro);
+}
+//menor erro, maior fitnes
+//maior erro, menor fitness
