@@ -4,6 +4,7 @@
 #include "populacao.h"
 #include "dados.h"
 #include "erro.h"
+#include "genetica.h"
 
 int main(){
     
