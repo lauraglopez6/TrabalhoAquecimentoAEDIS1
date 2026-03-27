@@ -3,6 +3,7 @@
 #include <time.h>
 #include "populacao.h"
 #include "dados.h"
+#include "erro.h"
 
 int main(){
     
@@ -17,10 +18,14 @@ int main(){
     preencherPopulacao(populacao, d.tamanhoPop, -10, 10);
 
     for(int i = 0; i < d.tamanhoPop; i++){
-        printf("Individuo %d -> a = %.2f | b = %.2f\n",
-        i,
+
+        float erro = calcularErro(populacao[i], d.qtdPontos, d.valorX, d.valorY);
+
+        printf("Individuo %d -> a = %.2f \t| b = %.2f \t| erro = %.2f\n\n",
+         i,
          populacao[i].a, 
-         populacao[i].b);
+         populacao[i].b,
+         erro);
     }
 
     //TESTE
