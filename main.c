@@ -18,8 +18,8 @@ int main(){
 
     preencherPopulacao(populacao, d.tamanhoPop, -10, 10);
 
-    float melhorFitness = 0;
-    int melhorIndividuo = 0;
+    //float melhorFitness = 0;
+    //int melhorIndividuo = 0;
 
     for(int i = 0; i < d.tamanhoPop; i++){
 
@@ -33,19 +33,35 @@ int main(){
          populacao[i].b,
          erro,
          fitness);
-
-         if(fitness > melhorFitness){
-            melhorFitness = fitness;
-            melhorIndividuo = i;
-         }
     }
 
-    printf("\nMELHOR INDIVIDUO/FITNESS TESTE\n");
-    printf("Indice: %d\n", melhorIndividuo);
-    printf("a = %.2f | b = %.2f | fitness = %.4f\n\n",
-           populacao[melhorIndividuo].a,
-           populacao[melhorIndividuo].b,
-           melhorFitness);
+    ordenarPopulacao(populacao, d.tamanhoPop, d.qtdPontos, d.valorX, d.valorY);
+
+    printf("\nPOPULACAO ORDENADA DE ACORDO COM O FITNESS\n");
+    for(int i =0; i < d.tamanhoPop; i++){
+         float fitness = calcularFitness(populacao[i], d.qtdPontos, d.valorX, d.valorY);
+
+         printf("Individuo %d -> a = %.2f | b = %.2f | fitness = %.4f\n",
+        i, populacao[i].a, populacao[i].b, fitness);
+    }
+
+    printf("MELHOR INDIVIDUO\n");
+    printf("a = %.2f | b = %.2f | fitness = %.4f\n",
+           populacao[0].a, populacao[0].b,
+           calcularFitness(populacao[0], d.qtdPontos, d.valorX, d.valorY));
+
+    printf("DIVISAO DE MELHORES E PIORES");
+
+    printf("Melhores:\n");
+    int metade = d.tamanhoPop / 2;
+    for(int i = 0; i < metade; i++){
+        printf("Ind %d\n", i);
+    }
+
+    printf("Piores:\n");
+    for(int i = metade; i < d.tamanhoPop; i++){
+        printf("Ind %d\n", i);
+    }
 
     //TESTE
     printf("numero de pontos: %d\n", d.qtdPontos);
