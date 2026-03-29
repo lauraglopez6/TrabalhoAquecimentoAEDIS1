@@ -14,6 +14,11 @@ int main(){
     
     Dados d = lerDados("input.dat");
 
+    for(int g = 0; g < d.geracoes; g++){
+
+        
+    }
+
     Individuo *populacao = gerarPopulacao( d.tamanhoPop);
 
     preencherPopulacao(populacao, d.tamanhoPop, -10, 10);
@@ -45,12 +50,28 @@ int main(){
         i, populacao[i].a, populacao[i].b, fitness);
     }
 
-    printf("MELHOR INDIVIDUO\n");
-    printf("a = %.2f | b = %.2f | fitness = %.4f\n",
-           populacao[0].a, populacao[0].b,
-           calcularFitness(populacao[0], d.qtdPontos, d.valorX, d.valorY));
+    Individuo melhor = populacao[0];
 
-    printf("DIVISAO DE MELHORES E PIORES");
+    float melhorFitness = calcularFitness(melhor, d.qtdPontos, d.valorX, d.valorY);
+    float melhorErro = calcularErro(melhor, d.qtdPontos, d.valorX, d.valorY);
+
+    printf("MELHOR INDIVIDUO\n");
+    printf("a = %.2f | b = %.2f | fitness = %.4f | erro = %.2f\n",
+           melhor.a, melhor.b, melhorFitness, melhorErro);
+
+           salvarResultados("output.dat", melhor, melhorFitness, melhorErro);
+
+           //crossover
+    Individuo pai1 = populacao[0];
+    Individuo pai2 = populacao[1];
+    
+    Individuo filho = crossover(pai1, pai2);
+
+    printf("FILHO QUE VAI GERAR\n");
+    printf("a = %.2f | b = %.2f\n", filho.a, filho.b);
+
+
+    printf("DIVISAO DE MELHORES E PIORES\n");
 
     printf("Melhores:\n");
     int metade = d.tamanhoPop / 2;
@@ -62,6 +83,7 @@ int main(){
     for(int i = metade; i < d.tamanhoPop; i++){
         printf("Ind %d\n", i);
     }
+
 
     //TESTE
     printf("numero de pontos: %d\n", d.qtdPontos);
