@@ -35,7 +35,7 @@ void salvarResultados(const char *nome, Individuo melhor, float fitness,float er
 
     FILE *arquivo = fopen(nome, "a");
      if(arquivo == NULL){
-        printf("Erro ao abrir arquivo");
+        printf("Erro ao abrir arquivo\n");
         return;
      }
      fprintf(arquivo, "fitness: %.4f | erro: %.2f | a: %.2f | b: %.2f\n",

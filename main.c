@@ -10,6 +10,9 @@ int main(){
     
     srand(42); 
 
+    FILE *f = fopen("output.dat", "w");
+    fclose(f);
+
     printf("TESTE \n");
     
     Dados d = lerDados("input.dat");
@@ -22,10 +25,8 @@ int main(){
 
         printf("\n GERACAO %d \n", g);
 
-        
         ordenarPopulacao(populacao, d.tamanhoPop, d.qtdPontos, d.valorX, d.valorY);
 
-        
         Individuo melhor = populacao[0];
 
         float melhorFitness = calcularFitness(melhor, d.qtdPontos, d.valorX, d.valorY);
@@ -33,18 +34,34 @@ int main(){
 
         printf("Melhor -> a = %.2f | b = %.2f | fitness = %.4f | erro = %.2f\n",
                melhor.a, melhor.b, melhorFitness, melhorErro);
-
         
+        //impar ou par
+        if(g % 2 ==0){
+            //se for par cross
+            Individuo pai1 = populacao[0];
+            Individuo pai2 = populacao[1];
+
+            Individuo filho = crossover(pai1, pai2);
+
+            printf("crossover -> filho: a = %.2f | b = %.2f\n",filho.a, filho.b);
+            populacao[d.tamanhoPop -1] = filho;
+        }else{
+            //se nao, muta
+            Individuo mutado = populacao[0];
+            mutacao(&mutado);
+            printf("mutacao -> a = %.2f | b = %.2f\n", mutado.a, mutado.b);
+            //substitui o pior
+            populacao[d.tamanhoPop - 1] = mutado;
+        }  
+        //reordenar
+        ordenarPopulacao(populacao, d.tamanhoPop, d.qtdPontos, d.valorX, d.valorY);
+
+        melhor = populacao[0];
+
+        melhorFitness = calcularFitness(melhor, d.qtdPontos, d.valorX, d.valorY);
+        melhorErro = calcularErro(melhor, d.qtdPontos, d.valorX, d.valorY);
+
         salvarResultados("output.dat", melhor, melhorFitness, melhorErro);
-
-        
-        Individuo mutado = melhor;
-        mutacao(&mutado);
-
-        printf("Mutado -> a = %.2f | b = %.2f\n", mutado.a, mutado.b);
-
-        
-        populacao[d.tamanhoPop - 1] = mutado;
     }
 
     // TESTE 
