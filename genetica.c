@@ -6,7 +6,6 @@
 void ordenarPopulacao(Individuo *populacao, int tamanhoPop, int qtdPontos, float *x, float *y){
     for(int i = 0; i < tamanhoPop - 1; i++){
         for(int j =0; j < tamanhoPop - 1 - i; j++){
-
             float fitness1 = calcularFitness(populacao[j], qtdPontos, x, y);
             float fitness2 = calcularFitness(populacao[j+1], qtdPontos, x, y);
 

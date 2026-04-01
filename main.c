@@ -9,7 +9,7 @@
 int main(){
     
     srand(42); 
-
+    
     FILE *f = fopen("output.dat", "w");
     fclose(f);
 
@@ -35,31 +35,43 @@ int main(){
         printf("Melhor -> a = %.2f | b = %.2f | fitness = %.4f | erro = %.2f\n",
                melhor.a, melhor.b, melhorFitness, melhorErro);
         
-        //impar ou par
-        if(g % 2 ==0){
-            //se for par cross
-            Individuo pai1 = populacao[0];
-            Individuo pai2 = populacao[1];
+        //divide os melhores e os piores
+        int metade = d.tamanhoPop / 2;
+        int qtdNovos = d.tamanhoPop - metade;
+
+        //60%mutacao 40%cross
+        int qtdMutacao = qtdNovos * 0.6;
+        int qtdCrossover = qtdNovos - qtdMutacao;
+
+        int index = metade;
+
+        //cross
+        for(int i = 0; i < qtdCrossover; i++){
+            Individuo pai1 = populacao[rand() % metade];
+            Individuo pai2 = populacao[rand() % metade];
 
             Individuo filho = crossover(pai1, pai2);
 
-            printf("crossover -> filho: a = %.2f | b = %.2f\n",filho.a, filho.b);
-            populacao[d.tamanhoPop -1] = filho;
-        }else{
-            //se nao, muta
-            Individuo mutado = populacao[0];
+            printf("crossover -> a = %.2f | b = %.2f\n", filho.a, filho.b);
+            populacao[index++] = filho;
+        }
+
+        //mutacao
+        for(int i =0; i < qtdMutacao; i++){
+            Individuo mutado = populacao[rand() % metade];
             mutacao(&mutado);
+
             printf("mutacao -> a = %.2f | b = %.2f\n", mutado.a, mutado.b);
-            //substitui o pior
-            populacao[d.tamanhoPop - 1] = mutado;
-        }  
-        //reordenar
+            populacao[index++] = mutado;
+        }
+        
+        //ordenar populacao dnv
         ordenarPopulacao(populacao, d.tamanhoPop, d.qtdPontos, d.valorX, d.valorY);
 
         melhor = populacao[0];
-
         melhorFitness = calcularFitness(melhor, d.qtdPontos, d.valorX, d.valorY);
         melhorErro = calcularErro(melhor, d.qtdPontos, d.valorX, d.valorY);
+
 
         salvarResultados("output.dat", melhor, melhorFitness, melhorErro);
     }

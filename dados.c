@@ -22,7 +22,6 @@ fscanf(arquivo, "%d", &d.qtdPontos);
 fscanf(arquivo, "%d", &d.tamanhoPop);
 fscanf(arquivo, "%d", &d.geracoes);
 
-//printf("DEBUG: %d %d %d\n", *qtdPontos, *tamanhoPop, *geracoes);
 //espaco pra gurdar os valores
 d.valorX = (float*) malloc (d.qtdPontos * sizeof(float));
 d.valorY = (float*) malloc (d.qtdPontos * sizeof(float));
