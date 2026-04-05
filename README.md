@@ -11,10 +11,10 @@ Esse projeto implementa um algoritmo genético para encontrar a melhor reta da f
 
 que melhor se ajusta a um conjunto de pontos fornecidos em um arquivo de entrada ("input.dat").
 
-O problema consiste em minimizar o erro entre os valores reais {y} e os valores estimados {ŷ}, utilizando técnicas inpiradas na evolucao natural.
+O problema consiste em minimizar o erro entre os valores reais `y` e os valores estimados `ŷ`, utilizando técnicas inpiradas na evolucao natural.
 
 ## 🎯Objetivo
-Encontrar os valores de {a} e {b} que minimizam o erro entre
+Encontrar os valores de `a` e `b` que minimizam o erro entre
 
 * os dados reais (input)
 * a reta gerada pelo algoritmo
@@ -416,6 +416,37 @@ srand(42);
 ```c
        liberarPopulacao(populacao);
 ```
+
+## 📊Análise Assintótica
+
+| Função                | Complexidade     | Descrição |
+|----------------------|------------------|----------|
+| `lerDados`           | O(n)             | Lê os pontos do arquivo de entrada |
+| `gerarPopulacao`     | O(1)             | Aloca memória para a população |
+| `preencherPopulacao` | O(m)             | Inicializa os indivíduos da população |
+| `liberarPopulacao`   | O(1)             | Libera a memória alocada |
+| `calcularErro`       | O(n)             | Calcula o erro percorrendo todos os pontos |
+| `calcularFitness`    | O(n)             | Depende do cálculo do erro |
+| `ordenarPopulacao`   | O(m² x n)        | Ordena usando Bubble Sort + cálculo de fitness |
+| `crossover`          | O(1)             | Combina dois indivíduos |
+| `mutacao`            | O(1)             | Modifica um indivíduo |
+| `salvarResultados`   | O(1)             | Escreve os resultados no arquivo |
+---
+
+## 📊 Complexidade do Algoritmo
+
+A complexidade total do algoritmo é dada por:
+
+O(G x m² x n)
+
+Onde:
+- G é o número de gerações
+- m é o tamanho da população
+- n é a quantidade de pontos
+
+O principal custo computacional está na ordenação da população, que utiliza o algoritmo Bubble Sort, resultando em O(m²). Como o cálculo de fitness depende da avaliação de todos os pontos (O(n)), a complexidade da ordenação torna-se O(m² x n), sendo executada a cada geração.
+
+Dessa forma, o desempenho do algoritmo é fortemente influenciado pelo tamanho da população e pela quantidade de pontos analisados.
 
 ## 🧪Casos de Teste
 
