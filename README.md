@@ -470,7 +470,7 @@ sudo apt install build-essential
 
 Para a compilação, será usado o clone do repositório:
 <pre>
-  git clone [link clone]
+  git clone (https://github.com/lauraglopez6/TrabalhoAquecimentoAEDIS1.git)
 </pre>
 
 Logo depois, usar o comando:
