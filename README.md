@@ -565,6 +565,7 @@ Por fim, o desenvolvimento deste trabalho contribuiu para consolidar conheciment
 Agradeço o professor Michel Pires Silva por fornecer o Makefile que facilitou na execução e compilação do trabalho e tambem aos meus amigos de turma que me ajudaram na compreensão do projeto.
        
 ## 📨Contato
+* Autora: Laura Gonçalves Lopes 
 * Email: [lauragoncalves20166@gmail.com]
 * instagram: [https://www.instagram.com/lauragoncalves.lopes?igsh=MTFreDVkaW04NTZqNg==]
 * GitHub: [https://github.com/lauraglopez6]
