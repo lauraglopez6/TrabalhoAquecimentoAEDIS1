@@ -8,7 +8,7 @@ Individuo* gerarPopulacao(int tamanhoPop){
 return populacao;
 }
 
-//randon
+//gerar numero aleatorio
 float gerarAleatorio(float valorMin, float valorMax){
     return valorMin + (rand() / (float)RAND_MAX) * (valorMax - valorMin);
 

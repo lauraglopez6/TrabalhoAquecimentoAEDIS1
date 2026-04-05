@@ -4,8 +4,6 @@
 
 void ordenarPopulacao(Individuo *populacao, int tamanhoPop, int qtdPontos, float *x, float *y);
 
-int dividirPopulacao(int tamanhoPop);
-
 Individuo crossover(Individuo pai1, Individuo pai2);
 
 void salvarResultados(const char *nome, Individuo melhor, float fitness,float erro );

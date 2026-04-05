@@ -76,17 +76,6 @@ int main(){
         salvarResultados("output.dat", melhor, melhorFitness, melhorErro);
     }
 
-    // TESTE 
-    printf("\nDADOS\n");
-    printf("numero de pontos: %d\n", d.qtdPontos);
-    printf("populacao: %d\n", d.tamanhoPop);
-    printf("geracoes: %d\n", d.geracoes);
-
-    for(int i = 0; i< d.qtdPontos; i++){
-        printf("X = %.2f | Y = %2f\n", d.valorX[i], d.valorY[i]);
-    }
-
-    // liberar memória
     liberarPopulacao(populacao);
     free(d.valorX);
     free(d.valorY);

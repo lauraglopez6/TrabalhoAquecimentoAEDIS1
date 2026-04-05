@@ -17,9 +17,6 @@ void ordenarPopulacao(Individuo *populacao, int tamanhoPop, int qtdPontos, float
         }
     }
 }
-int dividirPopulacao(int tamanhoPop){
-    return tamanhoPop / 2;
-}
 
 Individuo crossover(Individuo pai1, Individuo pai2){
     Individuo filho;
