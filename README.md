@@ -1,4 +1,4 @@
-# 🧬Algoritmo Genético para Ajuste de Reta
+# <h1 align="center">🧬Algoritmo Genético para Ajuste de Reta</h1>
 > Projeto desenvolvido para aplicar conceitos de algoritmos geneticos na aproximação de uma reta a um conjunto de pontos. 
 ## 📌Descrição Geral
 > Trabalho proposto na disciplina de Algoritmo e Estrutura de Dados I (AEDSI), pelo professor Michel Pires da Silva. Foi proposto a criacao de um código (em C ou C++)
