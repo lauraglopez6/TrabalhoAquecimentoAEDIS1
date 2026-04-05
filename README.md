@@ -29,26 +29,39 @@ Este projeto foi desenvolvido na linguagem C, utilizando o Visual Studio Code co
 operando sobre o sistema Windows.
 
 ## 📁Estrutura do projeto
-<pre>
-📁 projeto/
-│
-├── main.c                        #controle do algoritmo
-├── dados.c / dados.h             #leitura dos dados
-├── populacao.c / populacao.h     #criação da população
-├── erro.c / erro.h               #cálculo do erro e fitness
-├── genetica.c / genetica.h       #operadores genéticos
-├── input.dat                     #dados de entrada
-└── output.dat                    #resultados
+<pre> 
+📁TrabalhoAquecimentoAEDIS1/
+|
+├──build/
+|
+├── include/
+|    ├── dados.h
+|    ├── erro.h
+|    ├── genetica.h
+|    ├── populacao.h
+|
+├──src/
+|    ├── dados.c
+|    ├── erro.c
+|    ├── genetica.c
+|    ├── main.c
+|    ├── populacao.c
+|
+├── .gitignore
+├── input.dat
+├── Makefile
+├── output.dat
+├── programa
+├── readme.md
 </pre>
 
     
-## 💡Implementação
-### Funções Implementadas:
-#### 1. 📁 populacao.c
-* 🔴**Gerar população**🔴
-  <pre>
-    Individuo* gerarPopulacao(int tamanhoPop);
-  </pre>
+## 💡Funções Implementadas
+### 1. 📁 populacao.c
+### 🔴**Gerar população**🔴
+```c
+ Individuo* gerarPopulacao(int tamanhoPop);
+```
   📌O que faz:
 
   Aloca dinamicamente memória para armazenar a população.
@@ -65,10 +78,10 @@ operando sobre o sistema Windows.
   *retorna um ponteiro para para o vetor Individuo;
   
 
-* 🔴**Preencher População**🔴
-  <pre>
+### 🔴**Preencher População**🔴
+```c
     void preencherPopulacao(Individuo *populacao, int tamanhoPop, float valorMin, float valorMax);
-  </pre>
+```
   📌O que faz:
 
   Inicializa os individuos com valores aleatorios
@@ -84,12 +97,13 @@ operando sobre o sistema Windows.
   * garante uma diversidade inicial;
 
   🔁Retorno:
-  * Nao retorna nada (void)
+  
+   Nao retorna nada (void)
  
-* 🔴**Liberar População**🔴
-  <pre>
+### 🔴**Liberar População**🔴
+```c
     void liberarPopulacao(Individuo *populacao);
-  </pre>
+```
   📌O que faz:
 
   Libera a memória alocada para a população.
@@ -103,11 +117,11 @@ operando sobre o sistema Windows.
   🔁Retorno:
   * não retorna nada.
  
-#### 2. 📁 dados.c
-* 🔴**Ler Dados**🔴
-  <pre>
+### 2. 📁 dados.c
+### 🔴**Ler Dados**🔴
+```c
     Dados lerDados(const char *nome);
-  </pre>
+```
   📌O que faz:
 
   Lê os dados do arquivo de entrada (input.dat).
@@ -135,11 +149,11 @@ operando sobre o sistema Windows.
     * valorX
     * valorY
 
-#### 3. 📁 erro.c
-* 🔴**Calcular Erro**🔴
-  <pre>
+### 3. 📁 erro.c
+### 🔴**Calcular Erro**🔴
+```c
     float calcularErro(Individuo ind, int qtdPontos, float *x, float *y);
-  </pre>
+```
   📌O que faz:
 
   Calcula o erro de um individuo.
@@ -148,23 +162,24 @@ operando sobre o sistema Windows.
 
   Para cada ponto:
   1. Calcula
-     <pre>
+```c
        yPrevisto = a * x + b;
-     </pre>
+```
  
   2. Calcula
-     <pre>
+```c
        erro = yReal - yPrevisto
-     </pre>
+```
   3. Soma
-     <pre>
+```c
        erro²
-     </pre>
+```
   4. Divide
-     <pre>
+```c
        erroTotal/qtdPontos
-     </pre>
-     Foi usada a fórmula MSE (Erro quadrático médio)
+```
+
+  Foi usada a fórmula MSE (Erro quadrático médio)
 
   $$
   MSE = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
@@ -178,10 +193,10 @@ operando sobre o sistema Windows.
   
   * retorna um float (erro médio).
 
-* 🔴**Calcular Fitness**🔴
-  <pre>
+### 🔴**Calcular Fitness**🔴
+```c
     float calcularFitness(Individuo ind, int qtdPontos, float *x, float *y);
-  </pre>
+```
   📌O que faz:
 
   Convete o erro em fitness.
@@ -199,12 +214,11 @@ operando sobre o sistema Windows.
 
   *retorna um float(fitness)
 
-#### 4. 📁genetica.c
-
-* 🔴**Ordenar Populacao**🔴
-  <pre>
+### 4. 📁genetica.c
+### 🔴**Ordenar Populacao**🔴
+```c
     void ordenarPopulacao(Individuo *populacao, int tamanhoPop, int qtdPontos, float *x, float *y);
-  </pre> 
+```
   📌O que faz:
 
   Ordena a população pelo valor do fitness.
@@ -221,10 +235,10 @@ operando sobre o sistema Windows.
   🔁Retorno:
   * nao retorna nada (void).
 
-* 🔴**Crossover**🔴
-  <pre>
+ ### 🔴**Crossover**🔴
+```c
     Individuo crossover(Individuo pai1, Individuo pai2);
-  </pre>
+```
   📌O que faz:
 
    Gera um filho combinando dois pais.
@@ -236,22 +250,22 @@ operando sobre o sistema Windows.
   </pre>
 
   exemplo
-  <pre>
+```c
     pai1: a = 2, b = 1
     pai2: a = 3, b = 0
 
     filho: a = 2, b = 0
-  </pre>
+```
   🎯Efeito no Algoritmo:
   * combina caracteristicas boas
  
   🔁Retorno:
   * retorna um novo individuo.
 
-* 🔴**Mutação**🔴
-  <pre>
+ ### 🔴**Mutação**🔴
+```c
     void mutacao(Individuo *ind);
-  </pre>
+```
   📌O que faz:
 
   Aplica uma alteração aleatória.
@@ -280,10 +294,10 @@ operando sobre o sistema Windows.
      * nao retorna nada (void).
      * modifica o individuo.
 
-* 🔴**Salvar Resultados**🔴
-  <pre>
+### 🔴**Salvar Resultados**🔴
+```c
     void salvarResultados(const char *nome, Individuo melhor, float fitness,float erro );
-  </pre>
+```
   📌O que faz:
 
   Salva os resultado em um arquivo (output.dat)
@@ -304,12 +318,12 @@ operando sobre o sistema Windows.
   * nao retorna nada.
 
 
-#### 5. 📁Main.c
+### 5. 📁Main.c
 
-* 🔴**Main**🔴
-  <pre>
+### 🔴**Main**🔴
+```c
   int main();
-  </pre>
+```
   📌O que faz:
 
   Controla TODO o algoritmo.
@@ -317,89 +331,91 @@ operando sobre o sistema Windows.
   ⚙️Funcionamento:
 
   1. Inicialização
-     <pre>
-       srand(42);
-     </pre>
-     * define aleatoriedade
-     * com essa seed, sempre vai ser gerado uma mesma sequência, com os mesmos números e os mesmos resultados.
+```c
+srand(42);
+```
+
+  * define aleatoriedade
+  * com essa seed, sempre vai ser gerado uma mesma sequência, com os mesmos números e os mesmos resultados.
 
   2. Limpeza do arquivo de saida
-     <pre>
+```c
        fopen("output.dat", "w");
-     </pre>
+```
   3. Lê dados
-     <pre>
+```c
        Dados d = lerDados("input.dat");
-     </pre>
+```
   4. Criação da População
-     <pre>
+```c
       Individuo *populacao = gerarPopulacao(d.tamanhoPop);
       preencherPopulacao(populacao, d.tamanhoPop, -10, 10);
-     </pre>
+```
   5. Loop de gerações
-     <pre>
+```c
        for(int g = 0; g < d.geracoes; g++){
-     </pre>
-    * DENTRO DO LOOP:
-      * Ordena População:
-        <pre>
+```
+
+### DENTRO DO LOOP:
+  * Ordena População:
+```c
           ordenarPopulacao(populacao, d.tamanhoPop, d.qtdPontos, d.valorX, d.valorY);
-        </pre>
-      * Seleciona o melhor:
-        <pre>
+```
+  * Seleciona o melhor:
+```c
           Individuo melhor = populacao[0];
-        </pre>
-      * Calcula o erro e o fitness
-        <pre>
+```
+  * Calcula o erro e o fitness
+```c
           calcularFitness(...)
           calcularErro(...)
-        </pre>
-      * Divisão da População
-        <pre>
+```
+  * Divisão da População
+```c
           int metade = d.tamanhoPop / 2;
           int qtdNovos = d.tamanhoPop - metade;
-        </pre>
+```
 
-        Divide a população em [melhores | piores]
-      * Definição das Quantidades
-        <pre>
+  Divide a população em [melhores | piores]
+  * Definição das Quantidades
+```c
           int qtdMutacao = qtdNovos * 0.6;
           int qtdCrossover = qtdNovos - qtdMutacao;
-        </pre>
-        📌O que faz:
+```
+  📌O que faz:
 
-         É definido que em 60% será feito mutação e em 30% será feito comutação.
-      * Crossover
-        <pre>
+  É definido que em 60% será feito mutação e em 30% será feito comutação.
+  * Crossover
+```c
           for(int i = 0; i < qtdCrossover; i++){
-        </pre>
-        📌O que faz:
+```
+  📌O que faz:
 
-        É selecionado dois pais aleatórios, onde é gerado um filho e esse filho é substituido por um dos piores.
-      * Mutação
-        <pre>
+   É selecionado dois pais aleatórios, onde é gerado um filho e esse filho é substituido por um dos piores.
+  * Mutação
+```c
           for(int i =0; i < qtdMutacao; i++){
-        </pre>
-        📌O que faz:
+```
+  📌O que faz:
 
-        É selecionado um dos bons, é feito uma cópia, nessa cópia acontece a mutação. Essa cópia mutada é substituida por um dos piores.
-      * Reordenação
-        <pre>
+  É selecionado um dos bons, é feito uma cópia, nessa cópia acontece a mutação. Essa cópia mutada é substituida por um dos piores.
+  * Reordenação
+```c
           ordenarPopulacao(...)
-        </pre>
-      * Atualiza o melhor
-        <pre>
+```
+  * Atualiza o melhor
+```c
           melhor = populacao[0];
-        </pre>
-      * Salvamento dos resultados
-        <pre>
+```
+  * Salvamento dos resultados
+```c
           salvarResultados(...)
-        </pre>
+```
 
-    6. Liberação de Memória
-       <pre>
+  6. Liberação de Memória
+```c
        liberarPopulacao(populacao);
-       </pre>
+```
 
 ## 🧪Casos de Teste
 
@@ -430,13 +446,51 @@ O algoritmo encontrou valores muito próximos da reta original:
  * Valor esperado: a = 1, b = 1
  * Valor encontrado: a = 1.02, b = 0.81
 
-Isso demonstra que o algoritmo conseguiu convergir corretamente para a solução ótima.
+Isso demonstra que o algoritmo conseguiu convergir corretamente para a solução.
 
 ## 👩🏽‍🔬Ambiente de Teste
 O projeto foi desenvolvido e testado com as seguintes configurações:
 - 🖥️ Sistema Operacional: Ubuntu 24.04 (executado via WSL no Windows 11)
 - ⚙️ Compilador: GCC (Ubuntu 13.3.0) versão 13.3.0
 - 💻 Linguagem: C
+
+**Hardware**
+
+- Notebook: Acer Nitro 5 AN515-54
+- CPU: Intel(R) Core(TM) i5-9300H CPU @ 2.40GHz (2.40 GHz)
+- RAM: 8,00 GB
+
+## 🛠️Modo de compilação
+> [!WARNING]
+> Antes de compilar, certifique-se de que você possui os seguintes pacotes instalados no Ubuntu (via WSL):
+<pre>
+sudo apt update
+sudo apt install build-essential
+</pre>
+
+Para a compilação, será usado o clone do repositório:
+<pre>
+  git clone [link clone]
+</pre>
+
+Logo depois, usar o comando:
+<pre>
+  cd TrabalhoAquecimentoAEDIS1
+</pre>
+
+Para limpar, compilar e rodar, execute os seguintes comandos:
+<pre>
+  make clean
+</pre>
+<pre>
+  make
+</pre>
+<pre>
+  make run
+</pre>
+
+Dessa forma, você garante que o projeto será limpo, compilado e executado corretamente.
+
 
 ## 📄Considerações Finais
 O desenvolvimento deste projeto foi uma experiência importante para a compreensão prática de algoritmos genéticos e manipulação de dados em linguagem C.
@@ -467,20 +521,17 @@ As principais bibliotecas utilizadas foram:
 
 ## 📌Conclusão
 
-Em suma, é possível concluir que o algoritmo aplicado (Algoritmo Genético) mostrou-se eficiente para o problema proposto, sendo capaz de aproximar
-uma reta a partir de um conjunto de pontos ao longo das gerações. Apesar disso, é importante destacar que, por se tratar de um método estocástico,
-os resultados não são exatamente iguais em todas as execuções e nem sempre atingem a solução ótima perfeita, mas sim uma aproximação satisfatória.
+Em resumo, o algoritmo genético utilizado se mostrou eficiente para o problema proposto, conseguindo aproximar uma reta a partir de um conjunto de pontos ao longo das gerações. No entanto, por ser um método estocástico, os resultados podem variar entre diferentes execuções e nem sempre chegam a uma solução ótima exata, mas sim a uma aproximação satisfatória.
 
-Além disso, foi possível observar que as escolhas feitas na implementação, como taxa de mutação, método de crossover e tamanho da população, influenciam
-diretamente na qualidade e velocidade de convergência do algoritmo. Dessa forma, futuras melhorias poderiam explorar variações nesses parâmetros ou até
-mesmo a utilização de outras abordagens de otimização para comparação de desempenho.
+Durante o desenvolvimento, também ficou evidente que algumas escolhas na implementação — como a taxa de mutação, o método de crossover e o tamanho da população — têm impacto direto tanto na qualidade dos resultados quanto na velocidade de convergência. Isso abre espaço para melhorias futuras, seja ajustando esses parâmetros ou até explorando outras técnicas de otimização para comparação.
 
-Outro ponto relevante é que este projeto pode ser utilizado como uma ferramenta didática para estudantes da área de programação, permitindo o aprendizado
-e reforço de diversos conceitos importantes, como: manipulação de ponteiros, alocação dinâmica de memória, organização modular do código em linguagem C,
-leitura e escrita em arquivos, além da implementação prática de técnicas de otimização inspiradas na evolução natural.
+Além disso, o projeto se mostra bastante útil do ponto de vista didático, especialmente para estudantes de programação. Ele permite praticar conceitos importantes como manipulação de ponteiros, alocação dinâmica de memória, organização modular em C, leitura e escrita de arquivos, além de proporcionar uma aplicação prática de algoritmos inspirados na evolução natural.
 
-Dessa maneira, ao longo do desenvolvimento, foi possível consolidar conhecimentos relacionados à lógica algorítmica, estruturas de dados simples, uso de 
-funções e modularização do código, bem como compreender, na prática, o funcionamento e as limitações de algoritmos genéticos em problemas de regressão linear.
+Por fim, o desenvolvimento deste trabalho contribuiu para consolidar conhecimentos em lógica algorítmica, uso de funções, modularização e estruturas de dados básicas, além de proporcionar uma compreensão mais concreta sobre o funcionamento e as limitações dos algoritmos genéticos em problemas de regressão linear.
+
+## 💭Créditos
+
+Agradeço o professor Michel Pires Silva por fornecer o Makefile que facilitou na execução e compilação do trabalho e tambem aos meus amigos de turma que me ajudaram na compreensão do projeto.
        
 ## 📨Contato
 * Email: [lauragoncalves20166@gmail.com]
