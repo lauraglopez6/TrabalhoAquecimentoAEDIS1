@@ -12,8 +12,6 @@ int main(){
     
     FILE *f = fopen("output.dat", "w");
     fclose(f);
-
-    printf("TESTE \n");
     
     Dados d = lerDados("input.dat");
 
@@ -23,17 +21,12 @@ int main(){
     //loop
     for(int g = 0; g < d.geracoes; g++){
 
-        printf("\n GERACAO %d \n", g);
-
         ordenarPopulacao(populacao, d.tamanhoPop, d.qtdPontos, d.valorX, d.valorY);
 
         Individuo melhor = populacao[0];
 
         float melhorFitness = calcularFitness(melhor, d.qtdPontos, d.valorX, d.valorY);
         float melhorErro = calcularErro(melhor, d.qtdPontos, d.valorX, d.valorY);
-
-        printf("Melhor -> a = %.2f | b = %.2f | fitness = %.4f | erro = %.2f\n",
-               melhor.a, melhor.b, melhorFitness, melhorErro);
         
         //divide os melhores e os piores
         int metade = d.tamanhoPop / 2;
@@ -52,7 +45,6 @@ int main(){
 
             Individuo filho = crossover(pai1, pai2);
 
-            printf("crossover -> a = %.2f | b = %.2f\n", filho.a, filho.b);
             populacao[index++] = filho;
         }
 
@@ -61,7 +53,6 @@ int main(){
             Individuo mutado = populacao[rand() % metade];
             mutacao(&mutado);
 
-            printf("mutacao -> a = %.2f | b = %.2f\n", mutado.a, mutado.b);
             populacao[index++] = mutado;
         }
         
