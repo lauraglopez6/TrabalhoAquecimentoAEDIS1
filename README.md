@@ -540,9 +540,9 @@ Esses rescursos ajudaram bastante para o entendimento desses conceitos.
 Este projeto faz uso das bibliotecas padrão da linguagem C, que fornecem funcionalidades essenciais para o funcionamento do algoritmo genético.
 
 As principais bibliotecas utilizadas foram:
-  * <stdio.h> → operações de entrada e saída (printf, fopen, fprintf)
-  * <stdlib.h> → alocação de memória e geração de números aleatórios (malloc, free, rand, srand)
-  * <time.h> → controle de seed para geração de números pseudoaleatórios (time)
+  * `<stdio.h>` → operações de entrada e saída (printf, fopen, fprintf)
+  * `<stdlib.h>` → alocação de memória e geração de números aleatórios (malloc, free, rand, srand)
+  * `<time.h>` → controle de seed para geração de números pseudoaleatórios (time)
 
     Essas bibliotecas fazem parte da Standard Library da linguagem C, sendo fundamentais para:
     * Manipulação de arquivos
